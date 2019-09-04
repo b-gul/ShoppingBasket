@@ -42,73 +42,8 @@ BasketController.productRequestTransaction({
 })
 ```
 
-DO NOT FORGET TO UNCOMMENT THIS BLOCK WHEN YOUR BACKEND IS READY
-```
-.
-.
-.
-addProductRequestToBasket(id) {
-    
- // UNCOMMENT BELOW LINES WHEN YOUR BACKEND IS READY
 
- /* var totalRequested = this.getRequestedStockCountForProduct(id);
-
-  axios.get(this.backendUrl + '?id=' + id  + '&qty=' + totalRequested).then(function(res) {
-    UIkit.notification({
-      message: res.data,
-      pos: 'top-center',
-      timeout: 1000
-    });
-
-    this.backendActionCompleted = true;
-  }).then(function(error) {
-    this.backendActionCompleted = false;
-    this.backendWarningMessage = error;
-
-    setTimeout(window.location.reload(), 1000);
-  }); */
-
-  this.backendActionCompleted = true; // UNCOMMENT THIS LINE IF YOU'RE USING THE ABOVE CODE
-  return this.backendActionCompleted;
-},
-.
-.
-.
-```
-
-AND ALSO THIS BLOCK
-
-```
-.
-.
-.
-createBasketRecordForProduct(id) {
-
- /* USE SNIPPET GIVEN BELOW IN PRODUCTION MODE */
-
- /*if (window.localStorage.getItem('b' + id) == null
-    && parseFloat(this.customerBalance.textContent) !== 0) {
-    window.localStorage.setItem('b' + id, id);
-    this.basketRecordCount.textContent = parseInt(this.basketRecordCount.textContent) + 1;
-    this.mobileBasketRecordCount.textContent = parseInt(this.mobileBasketRecordCount.textContent) + 1;
-  }
-  */
-
- if (this.basketRecords.indexOf(id) === -1 
-    || parseFloat(this.customerBalance.textContent) !== 0) {
-    this.basketRecords.push(id);
-    this.basketRecordCount.textContent = parseInt(this.basketRecordCount.textContent) + 1;
-  }
-
-  return this;
-
-},
-.
-.
-.
-```
-
-HTML SAMPLE
+HTML USAGE SAMPLE
 ```
 
 
