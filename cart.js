@@ -196,13 +196,11 @@ ShoppingBasketService.prototype = {
       this.backendWarningMessage = error;
   
       /**
-       *  YOU MAY WANT TO WRITE LOGIC FOR 
+       *  YOU MAY WANT TO WRITE LOGIC FOR:
        *  
-       *  CHECKING STOCK QTY IS 0 OR LOWER THAN REQUESTED ON SERVER SIDE 
-       *  WHEN ANOTHER USER ALREADY BOUGHT THE REQUIRED PRODUCT
-       *  BUT ANOTHER USER IS STILL SEEING SAME STOCKS ON HIS/HERE PAGE(WITHOUT REFRESH).
+       *  * CHECKING STOCK QTY IS 0 OR LOWER THAN REQUESTED ON SERVER SIDE 
        *  
-       *  Extreme simple solution: 
+       *  Extreme simple solution:  
        *
        *  [*] After throwing pop up error then refresh page for displaying new stock information.
        *   
