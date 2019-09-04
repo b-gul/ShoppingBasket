@@ -10,7 +10,7 @@ LIVE: https://jsfiddle.net/bgul/16w92q0m/
 * Limits stock increment, decreases from max stock when you buy
 * Customer balance and debit 
 * Stops buying process when balance is 0
-* Total price of basket
+
 
 Add axios in your \<head>
 ```
