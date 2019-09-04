@@ -6,10 +6,7 @@
 
 function ShoppingBasketService() {	 
   this.backendUrl = ''; // Controller path for backend
-  
-  this.backendActionCompleted = null;
-  this.backendWarningMessage = null;
-  
+ 
   this.requestedStockQtyForProduct = {};
   this.remainingMaxRequestForProductStockQty = {};
     
@@ -55,7 +52,7 @@ ShoppingBasketService.prototype = {
     var stockCount = this.stockCountOfProduct(data.id);
     var maxStockCount =  this.remainedMaxStockCountOfProduct(data.id);
 
-    if (! this.remainingMaxRequestForProductStockQty.hasOwnProperty(data.id)){
+    if (! this.remainingMaxRequestForProductStockQty.hasOwnProperty(data.id)) {
       this.remainingMaxRequestForProductStockQty[data.id] = data.stock;
     }
 
@@ -160,10 +157,10 @@ ShoppingBasketService.prototype = {
   createBasketRecordForProduct (id) {
     
    if (window.localStorage.getItem('b' + id) == null
-      && parseFloat(this.customerBalance.textContent) !== 0) {
-      window.localStorage.setItem('b' + id, id);
-      this.basketRecordCount.textContent = parseInt(this.basketRecordCount.textContent) + 1;
-      this.mobileBasketRecordCount.textContent = parseInt(this.mobileBasketRecordCount.textContent) + 1;
+       && parseFloat(this.customerBalance.textContent) !== 0) {
+     window.localStorage.setItem('b' + id, id);
+     this.basketRecordCount.textContent = parseInt(this.basketRecordCount.textContent) + 1;
+     this.mobileBasketRecordCount.textContent = parseInt(this.mobileBasketRecordCount.textContent) + 1;
    }
    
    return this;
@@ -184,30 +181,10 @@ ShoppingBasketService.prototype = {
    * @returns {Boolean} backedActionCompleted
    */
   addProductRequestToBasket (id) {
-   
     var totalRequested = this.getRequestedStockCountForProduct(id);
-    
-    axios.get(this.backendUrl + '?id=' + id  + '&qty=' + totalRequested).then(function (res) {
-      alert(res.data);
-      this.backendActionCompleted = true;
-    }).then(function(error) { 
-      this.backendActionCompleted = false;
-      this.backendWarningMessage = error;
-  
-      /**
-       * You may want to write logic for:
-       *  
-       * CHECKING STOCK QTY IS 0 OR LOWER THAN REQUESTED ON SERVER SIDE 
-       *  
-       * Extreme simple solution:  
-       * Throw pop up error then refresh page for displaying new stock information.
-       *  
-       * => setTimeout(window.location.reload(), 1000); 
-       */
-      
-    }); 
+    var request axios.get(this.backendUrl + '?id=' + id  + '&qty=' + totalRequested);
 
-    return this.backendActionCompleted;
+    return request;
   },
   
   /**
@@ -330,38 +307,35 @@ ShoppingBasketController.prototype = {
     return this.shoppingBasketService
       .checkIfRequestedStockQtyForProductIsset(args);
   },
-
-  /**
-   * @returns {Object} ShoppingCartService
-   */
-  getBackendWarningMessage () {
-    return this.shoppingBasketService.backendWarningMessage;
-  },
   
   /**
    * @returns {Object} ShoppingCartService
    */ 
-  destroyStockRequest(args) {
+  destroyStockRequest (args) {
     return this.shoppingBasketService.destroyStockRequestQtyForProduct(args.id);
-  }
+  },
   
   /**
    * @param {Object} args Holds product id, max stock qty and price value
    */
-  productRequestTransaction(args) {
+  productRequestTransaction (args) {
     if (this.checkBalance(args) == true && this.checkStock(args) == true &&
       this.checkStockRequestQtyIsSet(args) == true ) {
 
-      if (this.shoppingBasketService.addProductRequestToBasket(args.id)) {
+      this.shoppingBasketService.addProductRequestToBasket(args.id).then(function (res) {
+  
+        alert(res.data);
+  
         this.shoppingBasketService
           .setNewMaxStockQtyForProduct({id: args.id, stock: args.stock})
           .resetCounterForProduct(args.id)
           .setNewCustomerAccountInfo({id: args.id, price: args.price})
           .createBasketRecordForProduct(args.id)
           .addPriceToBasketTotal({id: args.id, price: args.price});
-      } else {
-         alert(this.getBackendWarningMessage());
-      }
+
+      }).then(function (error) {
+         alert(error);
+      });
 
     } else if (this.checkBalance(args) == false) {
       alert('Insufficient funds!');
