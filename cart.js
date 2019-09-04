@@ -18,7 +18,6 @@ function ShoppingBasketService() {
     
   this.basketRecordCount = document.getElementById('basket-count');
   this.mobileBasketRecordCount = document.getElementById('mobile-basket-count');
-  this.basketRecords = [];
   this.basketTotalPrice = document.getElementById('basket-total');
 
   this.currency = '(currencyGoesHere)';
@@ -57,12 +56,12 @@ ShoppingBasketService.prototype = {
     var maxStockCount =  this.remainedMaxStockCountOfProduct(data.id);
 
     if (! this.remainingMaxRequestForProductStockQty.hasOwnProperty(data.id)){
-        this.remainingMaxRequestForProductStockQty[data.id] = data.stock;
+      this.remainingMaxRequestForProductStockQty[data.id] = data.stock;
     }
 
     if (stockCount.textContent < this.remainingMaxRequestForProductStockQty[data.id] 
       && maxStockCount !== 0) {
-          stockCount.textContent = parseInt(stockCount.textContent) + 1;
+      stockCount.textContent = parseInt(stockCount.textContent) + 1;
     } 
 
     return this;
@@ -76,7 +75,7 @@ ShoppingBasketService.prototype = {
     var stockCount = this.stockCountOfProduct(id);
 
     if (stockCount.textContent > 0) {
-          stockCount.textContent = parseInt(stockCount.textContent) - 1;
+      stockCount.textContent = parseInt(stockCount.textContent) - 1;
     } 
     
     return this;
