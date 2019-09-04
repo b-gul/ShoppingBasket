@@ -196,12 +196,15 @@ ShoppingBasketService.prototype = {
       this.backendWarningMessage = error;
   
       /**
-       *  WRITE LOGIC FOR REFRESH IN CASE STOCK QTY IS 0 ON SERVER 
-       *  BEFORE USER BUYING THE LAST ONE ON THE CLIENT SIDE
+       *  YOU MAY WANT TO WRITE LOGIC FOR 
+       *  
+       *  CHECKING STOCK QTY IS 0 OR LOWER THAN REQUESTED ON SERVER SIDE 
+       *  WHEN ANOTHER USER ALREADY BOUGHT THE REQUIRED PRODUCT
+       *  BUT ANOTHER USER IS STILL SEEING SAME STOCKS ON HIS/HERE PAGE(WITHOUT REFRESH).
        *  
        *  Extreme simple solution: 
        *
-       *  [*] After pop up information refresh page for new stocks
+       *  [*] After throwing pop up error then refresh page for displaying new stock information.
        *   
        *     => setTimeout(window.location.reload(), 1000); 
        */
