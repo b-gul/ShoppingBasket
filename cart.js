@@ -1,6 +1,6 @@
 
 /**
- * A simple B2C E-commerce Shopping Cart Controller based on Protype Pattern
+ * A simple B2C E-commerce Shopping Cart Stock Request Controller based on Protype Pattern
  * Author: @bgul <berke.gul@println.work>
  */
 
@@ -36,7 +36,7 @@ ShoppingBasketService.prototype = {
    * @param {Integer} id Holds div id data
    * @returns {HTMLDivElement} 
    */
-  stockCountOfProduct(id) {
+  stockCountOfProduct (id) {
     return document.getElementById('product-' + id).getElementsByClassName('stock')[0];
   },
   
@@ -44,7 +44,7 @@ ShoppingBasketService.prototype = {
    * @param {Integer} id Holds div id data
    * @returns {HTMLDivElement}
    */
-  remainedMaxStockCountOfProduct(id) {
+  remainedMaxStockCountOfProduct (id) {
     return document.getElementById('product-' + id).getElementsByClassName('max-stock')[0];
   },
   
@@ -52,7 +52,7 @@ ShoppingBasketService.prototype = {
    * @param {Object} data Holds product id and maximum range for increasing button
    * @returns {Object} ShoppingCartService
    */
-  increaseStockRequestQtyForProductUntilMaxStock(data) {
+  increaseStockRequestQtyForProductUntilMaxStock (data) {
     var stockCount = this.stockCountOfProduct(data.id);
     var maxStockCount =  this.remainedMaxStockCountOfProduct(data.id);
 
@@ -72,7 +72,7 @@ ShoppingBasketService.prototype = {
    * @param {Integer} id Holds div id data
    * @returns {Object} ShoppingCartService
    */
-  decreaseStockRequestQtyForProduct(id) {
+  decreaseStockRequestQtyForProduct (id) {
     var stockCount = this.stockCountOfProduct(id);
 
     if (stockCount.textContent > 0) {
@@ -86,7 +86,7 @@ ShoppingBasketService.prototype = {
    * @param {Integer} id Holds id data
    * @returns {Object} ShoppingCartService
    */
-  setRequestedStockCountForProduct(id) {
+  setRequestedStockCountForProduct (id) {
     var stockCount = this.stockCountOfProduct(id);
 
     if (! this.requestedStockQtyForProduct.hasOwnProperty(id)){
@@ -102,14 +102,14 @@ ShoppingBasketService.prototype = {
   /**
    * @param {Integer} id Holds id data
    */
-  getRequestedStockCountForProduct(id) {
+  getRequestedStockCountForProduct (id) {
     return window.localStorage.getItem(id);
   },
 
   /**
    * @param {Object} data Holds product id and stock
    */
-  checkIfRequestedStockQtyForProductIsset(data) {
+  checkIfRequestedStockQtyForProductIsset (data) {
     var stockCount = this.stockCountOfProduct(data.id);
     var maxStockCount = this.remainedMaxStockCountOfProduct(data.id);
 
@@ -125,7 +125,7 @@ ShoppingBasketService.prototype = {
    * @param {Integer} id Holds id data
    * @return {Object} ShoppingCartService
    */
-  setNewMaxStockQtyForProduct(data) {
+  setNewMaxStockQtyForProduct (data) {
     var stockCount = this.stockCountOfProduct(data.id);
     var maxStockCount = this.remainedMaxStockCountOfProduct(data.id);
     
@@ -148,7 +148,7 @@ ShoppingBasketService.prototype = {
    * @param {Integer} id Holds div id data
    * @returns {Object} ShoppingCartService
    */
-  resetCounterForProduct(id) {
+  resetCounterForProduct (id) {
     var stockCount = this.stockCountOfProduct(id);  
     stockCount.textContent = 0;
     return this;
@@ -158,24 +158,14 @@ ShoppingBasketService.prototype = {
    * @param {Integer} id Holds id data
    * @returns {Object} ShoppingCartService
    */
-  createBasketRecordForProduct(id) {
-  
-   /* USE SNIPPET GIVEN BELOW IN PRODUCTION MODE */
-   
-   /*
+  createBasketRecordForProduct (id) {
+    
    if (window.localStorage.getItem('b' + id) == null
       && parseFloat(this.customerBalance.textContent) !== 0) {
       window.localStorage.setItem('b' + id, id);
       this.basketRecordCount.textContent = parseInt(this.basketRecordCount.textContent) + 1;
       this.mobileBasketRecordCount.textContent = parseInt(this.mobileBasketRecordCount.textContent) + 1;
-    }
-    */
-  
-   if (this.basketRecords.indexOf(id) === -1 
-    	|| parseFloat(this.customerBalance.textContent) !== 0) {
-  	  this.basketRecords.push(id);
-      this.basketRecordCount.textContent = parseInt(this.basketRecordCount.textContent) + 1;
-    }
+   }
    
     return this;
   },
@@ -183,7 +173,7 @@ ShoppingBasketService.prototype = {
   /**
    * @param {Object} data Holds product id and price
    */
-  addPriceToBasketTotal(data) {
+  addPriceToBasketTotal (data) {
     var totalRequested = this.getRequestedStockCountForProduct(data.id); 
     var sum = data.price * totalRequested;
     
@@ -194,37 +184,31 @@ ShoppingBasketService.prototype = {
    * @param {Integer} id Holds id data for product
    * @returns {Boolean} backedActionCompleted
    */
-  addProductRequestToBasket(id) {
+  addProductRequestToBasket (id) {
    
-    // UNCOMMENT WHEN YOUR BACKEND IS READY
-    
-    /* 
     var totalRequested = this.getRequestedStockCountForProduct(id);
     
-    axios.get(this.backendUrl + '?id=' + id  + '&qty=' + totalRequested).then(function(res) {
-      UIkit.notification({
-        message: res.data,
-        pos: 'top-center',
-        timeout: 1000
-      });
-
+    axios.get(this.backendUrl + '?id=' + id  + '&qty=' + totalRequested).then(function (res) {
+      alert(res.data);
       this.backendActionCompleted = true;
-    }).then(function(error) {
+    }).then(function(error) { 
       this.backendActionCompleted = false;
+      
+ 
       this.backendWarningMessage = error;
-
-      setTimeout(window.location.reload(), 1000);
+  
+      // REFRESH IN CASE STOCK QTY IS 0 ON SERVER 
+      // BEFORE USER BUYING THE LAST ONE ON THE CLIENT SIDE
+      setTimeout(window.location.reload(), 1000); 
     }); 
-    */
-    
-    this.backendActionCompleted = true; // DON'T FORGET TO REMOVE THIS LINE 
+
     return this.backendActionCompleted;
   },
   
   /**
    * @param {Object} data Holds product id and price
    */
-  checkCustomerBalance(data) {
+  checkCustomerBalance (data) {
     var requestedStockQty = this.getRequestedStockCountForProduct(data.id);
     var calculation = requestedStockQty * data.price;
 
@@ -241,7 +225,7 @@ ShoppingBasketService.prototype = {
    * @param {Integer} id Holds id data for product
    * @returns {Boolean} 
    */
-  checkStockIfExist(id) {
+  checkStockIfExist (id) {
     var remainedStockCount = this.remainedMaxStockCountOfProduct(id);
 
     if (parseInt(remainedStockCount.textContent) == 0){
@@ -254,7 +238,7 @@ ShoppingBasketService.prototype = {
   /**
    * @param {Integer} id Holds id data for product
    */
-  destroyStockRequestQtyForProduct(id) {
+  destroyStockRequestQtyForProduct (id) {
     window.localStorage.removeItem(id);
   },
   
@@ -262,7 +246,7 @@ ShoppingBasketService.prototype = {
    * @param {Object} data Holds product id and price
    * @returns {Object} ShoppingCartService
    */
-  setNewCustomerAccountInfo(data) {
+  setNewCustomerAccountInfo (data) {
     var requestedStockQty = this.getRequestedStockCountForProduct(data.id);
     var stockCount = this.stockCountOfProduct(data.id);
     
