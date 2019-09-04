@@ -216,12 +216,6 @@ ShoppingBasketService.prototype = {
     }
   },
   
-  /**
-   * @param {Integer} id Holds id data for product
-   */
-  destroyStockRequestQtyForProduct (id) {
-    window.localStorage.removeItem(id);
-  },
   
   /**
    * @param {Object} data Holds product id and price
@@ -339,7 +333,6 @@ ShoppingBasketController.prototype = {
 
     } else if (this.checkBalance(args) == false) {
       alert('Insufficient funds!');
-      this.destroyStockRequest(args.id);
     } else if (this.checkStockRequestQtyIsSet(args) == false) {
       alert('Please select stock qty!');
     } else if (this.checkStock(args) == false) {
