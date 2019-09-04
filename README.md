@@ -11,7 +11,6 @@ LIVE: https://jsfiddle.net/bgul/16w92q0m/
 * Customer balance and debit 
 * Stops buying process when balance is 0
 * Total price of basket
-* Customizable price unit
 
 Add axios in your \<head>
 ```
