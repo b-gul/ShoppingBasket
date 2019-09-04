@@ -219,11 +219,10 @@ ShoppingBasketService.prototype = {
 
     if (calculation > parseFloat(this.customerBalance.textContent) 
         || parseFloat(this.customerBalance.textContent) == 0) {		
-      this.destroyStockRequestQtyForProduct(data.id);
       return false;
-    } 
-    
-    return true;
+    } else {
+      return true;
+    }
   },
 
   /**
@@ -283,14 +282,14 @@ ShoppingBasketController.prototype = {
   /**
   * @param {Object} service
   */
-  wireService(service) {
+  wireService (service) {
       this.shoppingBasketService = service;
   },
   
   /**
    * @param {Object} args Holds product id, max stock qty
    */
-  increment(args) {
+  increment (args) {
     this.shoppingBasketService
       .increaseStockRequestQtyForProductUntilMaxStock({id: args.id, stock: args.stock})
       .setRequestedStockCountForProduct(args.id);
@@ -299,7 +298,7 @@ ShoppingBasketController.prototype = {
   /**
    * @param {Integer} id Holds id data of product
    */
-  decrement(id) {
+  decrement (id) {
     this.shoppingBasketService
       .decreaseStockRequestQtyForProduct(id)
       .setRequestedStockCountForProduct(id);
@@ -309,7 +308,7 @@ ShoppingBasketController.prototype = {
    * @param {Object} args Holds product id, max stock qty and price value
    * @returns {Object} ShoppingCartService
    */
-  checkBalance(args) {
+  checkBalance (args) {
     return this.shoppingBasketService
       .checkCustomerBalance({id: args.id, price: args.price});
   },
@@ -318,7 +317,7 @@ ShoppingBasketController.prototype = {
    * @param {Object} args Holds product id, max stock qty and price value
    * @returns {Object} ShoppingCartService
    */
-  checkStock(args) {
+  checkStock (args) {
     return this.shoppingBasketService
       .checkStockIfExist(args.id);
   },
@@ -327,7 +326,7 @@ ShoppingBasketController.prototype = {
    * @param {Object} args Holds product id, max stock qty and price value
    * @returns {Object} ShoppingCartService
    */
-  checkStockRequestQtyIsSet(args) {
+  checkStockRequestQtyIsSet (args) {
     return this.shoppingBasketService
       .checkIfRequestedStockQtyForProductIsset(args);
   },
@@ -335,10 +334,17 @@ ShoppingBasketController.prototype = {
   /**
    * @returns {Object} ShoppingCartService
    */
-  getBackendWarningMessage() {
+  getBackendWarningMessage () {
     return this.shoppingBasketService.backendWarningMessage;
   },
-
+  
+  /**
+   * @returns {Object} ShoppingCartService
+   */ 
+  destroyStockRequest(args) {
+    return this.shoppingBasketService.destroyStockRequestQtyForProduct(args.id);
+  }
+  
   /**
    * @param {Object} args Holds product id, max stock qty and price value
    */
@@ -359,6 +365,7 @@ ShoppingBasketController.prototype = {
 
     } else if (this.checkBalance(args) == false) {
       alert('Insufficient funds!');
+      this.destroyStockRequest(args.id);
     } else if (this.checkStockRequestQtyIsSet(args) == false) {
       alert('Please select stock qty!');
     } else if (this.checkStock(args) == false) {
