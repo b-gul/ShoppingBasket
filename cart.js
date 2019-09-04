@@ -167,7 +167,7 @@ ShoppingBasketService.prototype = {
       this.mobileBasketRecordCount.textContent = parseInt(this.mobileBasketRecordCount.textContent) + 1;
    }
    
-    return this;
+   return this;
   },
   
   /**
@@ -202,7 +202,7 @@ ShoppingBasketService.prototype = {
        *  
        *  Extreme simple solution:  
        *
-       *  [*] After throwing pop up error then refresh page for displaying new stock information.
+       *  [*] Throw pop up error then refresh page for displaying new stock information.
        *   
        *     => setTimeout(window.location.reload(), 1000); 
        */
