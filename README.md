@@ -1,4 +1,4 @@
-# ShoppingCart
+# ShoppingBasket
 
 
 A simple shopping basket stock request controller for your frontend.
