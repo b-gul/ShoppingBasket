@@ -193,13 +193,19 @@ ShoppingBasketService.prototype = {
       this.backendActionCompleted = true;
     }).then(function(error) { 
       this.backendActionCompleted = false;
-      
- 
       this.backendWarningMessage = error;
   
-      // REFRESH IN CASE STOCK QTY IS 0 ON SERVER 
-      // BEFORE USER BUYING THE LAST ONE ON THE CLIENT SIDE
-      setTimeout(window.location.reload(), 1000); 
+      /**
+       *  WRITE LOGIC FOR REFRESH IN CASE STOCK QTY IS 0 ON SERVER 
+       *  BEFORE USER BUYING THE LAST ONE ON THE CLIENT SIDE
+       *  
+       *  Extreme simple solution: 
+       *
+       *  [*] After pop up information refresh page for new stocks
+       *   
+       *     => setTimeout(window.location.reload(), 1000); 
+       */
+      
     }); 
 
     return this.backendActionCompleted;
