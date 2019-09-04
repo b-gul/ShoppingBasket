@@ -260,7 +260,7 @@ ShoppingBasketController.prototype = {
   * @param {Object} service
   */
   wireService (service) {
-      this.shoppingBasketService = service;
+    this.shoppingBasketService = service;
   },
   
   /**
