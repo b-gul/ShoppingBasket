@@ -195,15 +195,14 @@ ShoppingBasketService.prototype = {
       this.backendWarningMessage = error;
   
       /**
-       *  YOU MAY WANT TO WRITE LOGIC FOR:
+       * You may want to write logic for:
        *  
-       *  * CHECKING STOCK QTY IS 0 OR LOWER THAN REQUESTED ON SERVER SIDE 
+       * CHECKING STOCK QTY IS 0 OR LOWER THAN REQUESTED ON SERVER SIDE 
        *  
-       *  Extreme simple solution:  
-       *
-       *  [*] Throw pop up error then refresh page for displaying new stock information.
-       *   
-       *     => setTimeout(window.location.reload(), 1000); 
+       * Extreme simple solution:  
+       * Throw pop up error then refresh page for displaying new stock information.
+       *  
+       * => setTimeout(window.location.reload(), 1000); 
        */
       
     }); 
