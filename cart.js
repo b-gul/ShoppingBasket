@@ -321,12 +321,12 @@ ShoppingBasketController.prototype = {
   productRequestTransaction (args) {
     if (this.checkBalance(args) == true && this.checkStock(args) == true &&
       this.checkStockRequestQtyIsSet(args) == true ) {
-
+      var basketService = this.shoppingBasketService;
       this.shoppingBasketService.addProductRequestToBasket(args.id).then(function (res) {
   
         alert(res.data);
-  
-        this.shoppingBasketService
+        
+        basketService
           .setNewMaxStockQtyForProduct({id: args.id, stock: args.stock})
           .resetCounterForProduct(args.id)
           .setNewCustomerAccountInfo({id: args.id, price: args.price})
