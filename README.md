@@ -26,7 +26,7 @@ Import the file BEFORE CLOSING \<body> tag:
 <script src="./cart.js"></script>
 ```
 
-At the end of file there is an configuration array that you can configure your service beforehand.
+At the end of **cart.js** file there is an configuration array that you can configure your service beforehand.
 
 ```
 var config = {
