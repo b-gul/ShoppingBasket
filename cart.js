@@ -331,7 +331,7 @@ ShoppingBasketController.prototype = {
           * warning messages throwed by backend!
           *
           * E.g:
-          * Required product's stock is out could not exist 
+          * Required product's stock could not be exist 
           * while client want to add into basket(but on client side it seems exist).
           * 
           */
