@@ -325,6 +325,16 @@ ShoppingBasketController.prototype = {
 
       }).then(function (error) {
          alert(error);
+        
+         /**
+          * You may have to create your own frontend logic for specific 
+          * warning messages throwed by backend!
+          *
+          * E.g:
+          * Required product's stock is out could not exist 
+          * while client want to add into basket(but on client side it seems exist).
+          * 
+          */
       });
 
     } else if (this.checkBalance(args) == false) {
