@@ -4,7 +4,7 @@
 A simple Vanilla JS(ES-5) shopping basket controller for your frontend.
 You can easily hook up with your backend iterations.
 
-Live DEMO(Warning: DEMO code has differences to work properly on JSFiddle): https://jsfiddle.net/bgul/16w92q0m/
+Live DEMO(Warning: DEMO code has some differences to work properly on JSFiddle): https://jsfiddle.net/bgul/16w92q0m/
 
 # Features
 * It is lighweight, solid, modular and scalable(you can add your own facades into **BasketServiceController** for your suitable needs).
