@@ -4,22 +4,22 @@
  * Author: @bgul <berke.gul@println.work>
  */
 
-function ShoppingBasketService() {	 
-  this.backendUrl = ''; // Controller path for backend
- 
+function ShoppingBasketService(config) {
+  this.backendUrl = config.backendUrl; 
+  
+  this.productElemIdPrefix = config.productElemIdPrefix;
+
   this.requestedStockQtyForProduct = {};
   this.remainingMaxRequestForProductStockQty = {};
     
-  this.customerDebit = document.getElementById('customer-debit');
-  this.customerBalance = document.getElementById('customer-balance');
-    
-  this.basketRecordCount = document.getElementById('basket-count');
-  this.mobileBasketRecordCount = document.getElementById('mobile-basket-count');
-  this.basketTotalPrice = document.getElementById('basket-total');
-
-  this.currency = '(currencyGoesHere)';
+  this.customerDebit = config.customerDebit; 
+  this.customerBalance = config.customerBalance;
+  
+  this.basketRecordCount = config.basketRecordCount;
+  this.mobileBasketRecordCount = config.mobileBasketRecordCount; 
+  this.basketTotalPrice = config.basketTotalPrice; 
+  this.currency = config.currency;
 }
-
 
 ShoppingBasketService.prototype = {
 
@@ -33,7 +33,7 @@ ShoppingBasketService.prototype = {
    * @returns {HTMLDivElement} 
    */
   stockCountOfProduct (id) {
-    return document.getElementById('product-' + id).getElementsByClassName('stock')[0];
+    return document.getElementById(this.productElemIdPrefix + '-' + id).getElementsByClassName('stock')[0];
   },
   
   /**
@@ -41,7 +41,7 @@ ShoppingBasketService.prototype = {
    * @returns {HTMLDivElement}
    */
   remainedMaxStockCountOfProduct (id) {
-    return document.getElementById('product-' + id).getElementsByClassName('max-stock')[0];
+    return document.getElementById(this.productElemIdPrefix + '-' + id).getElementsByClassName('max-stock')[0];
   },
   
   /**
@@ -308,7 +308,10 @@ ShoppingBasketController.prototype = {
   productRequestTransaction (args) {
     if (this.checkBalance(args) == true && this.checkStock(args) == true &&
       this.checkStockRequestQtyIsSet(args) == true ) {
+      
+      // Closure variable
       var basketService = this.shoppingBasketService;
+      
       this.shoppingBasketService.addProductRequestToBasket(args.id).then(function (res) {
   
         alert(res.data);
@@ -334,6 +337,36 @@ ShoppingBasketController.prototype = {
   },
 }
 
-BasketService = new ShoppingBasketService();
+var config = {
+  /**
+   * Controller path for backend
+   */
+  backendUrl: '', 
+ 
+  /**
+   * Specified div id prefix 
+   */
+  productElemIdPrefix: 'product',
+ 
+  /**
+   * Specified div ids for account balance informations
+   */
+  customerDebit: document.getElementById('customer-debit'),
+  customerBalance: document.getElementById('customer-balance'),
+ 
+  /**
+   * Specified div ids for shopping basket information
+   */
+  basketRecordCount:  document.getElementById('basket-count'),
+  mobileBasketRecordCount: document.getElementById('mobile-basket-count'),
+  basketTotalPrice: document.getElementById('basket-total'),
+ 
+  /**
+   * Customizable currency sign 
+   */
+  currency: ''
+};
+
+BasketService = new ShoppingBasketService(config);
 BasketController = new ShoppingBasketController();
 BasketController.wireService(BasketService);
