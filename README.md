@@ -1,7 +1,7 @@
 # ShoppingBasket
 
 
-A simple shopping basket stock request controller for your frontend.
+A simple Vanilla JS(ES-5) shopping basket controller for your frontend.
 You can easily hook up with your backend iterations.
 
 Live DEMO(Warning: DEMO code has differences to work properly on JSFiddle): https://jsfiddle.net/bgul/16w92q0m/
