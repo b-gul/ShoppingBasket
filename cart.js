@@ -57,7 +57,7 @@ ShoppingBasketService.prototype = {
       this.remainingMaxRequestForProductStockQty[data.id] = data.stock;
     }
 
-    if (stockCount.textContent < this.remainingMaxRequestForProductStockQty[data.id] 
+    if (parseInt(stockCount.textContent) < this.remainingMaxRequestForProductStockQty[data.id] 
         && maxStockCount !== 0) {
       stockCount.textContent = parseInt(stockCount.textContent) + 1;
     } 
@@ -72,7 +72,7 @@ ShoppingBasketService.prototype = {
   decreaseStockRequestQtyForProduct (id) {
     var stockCount = this.stockCountOfProduct(id);
 
-    if (stockCount.textContent > 0) {
+    if (parseInt(stockCount.textContent) > 0) {
       stockCount.textContent = parseInt(stockCount.textContent) - 1;
     } 
     
