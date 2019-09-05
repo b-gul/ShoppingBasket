@@ -49,7 +49,7 @@ var config = {
   /**
    * Specified div ids for shopping basket information
    */
-  basketRecordCount:  document.getElementById('basket-count'),
+  basketRecordCount: document.getElementById('basket-count'),
   mobileBasketRecordCount: document.getElementById('mobile-basket-count'),
   basketTotalPrice: document.getElementById('basket-total'),
  
