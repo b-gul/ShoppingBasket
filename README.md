@@ -7,7 +7,7 @@ You can easily hook up with your backend iterations.
 Live DEMO(Warning: DEMO code has differences to work properly on JSFiddle): https://jsfiddle.net/bgul/16w92q0m/
 
 # Features
-* It is lighweight, solid, modular and scalable(you can add your facades for suitable needs).
+* It is lighweight, solid, modular and scalable(you can add your own facades into **BasketServiceController** for your suitable needs).
 * Simple XSS protection provided by textContent().
 * Axios support.
 * Limits stock increment, and applies the logic => (max stock - requested quantity).
