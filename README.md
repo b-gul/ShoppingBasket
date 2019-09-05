@@ -84,8 +84,6 @@ BasketController.productRequestTransaction({
 
 HTML USAGE SAMPLE
 ```
-
-
 <div id="product-1">
   <strong>Example Product 1</strong><br>
   Price: <span>50(currencyGoesHere)</span><br>
