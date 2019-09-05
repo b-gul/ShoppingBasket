@@ -32,6 +32,8 @@ At the end of **cart.js** file there is an configuration array that you can conf
 var config = {
   /**
    * Controller path for backend
+   * Warning it adds to parameter and request method is GET
+   * Parameters: ?id=<id>&qty=<qty>
    */
   backendUrl: '', 
  
