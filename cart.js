@@ -178,7 +178,7 @@ ShoppingBasketService.prototype = {
   
   /**
    * @param {Integer} id Holds id data for product
-   * @returns {Boolean} backedActionCompleted
+   * @returns {AsyncMethod} Axios
    */
   addProductRequestToBasket (id) {
     var totalRequested = this.getRequestedStockCountForProduct(id);
