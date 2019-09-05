@@ -7,9 +7,9 @@ You can easily hook up with your backend iterations.
 LIVE: https://jsfiddle.net/bgul/16w92q0m/
 
 # Features
-* Limits stock increment, decreases from max stock when you buy
-* Customer balance and debit 
-* Stops buying process when balance is 0
+* Limits stock increment, and applies the logic => (max stock - requested quantity)
+* Changes customer balance and debit
+* Prevents buying requests when customer balance is 0 or in case customer balance is not enough for required amount.
 
 
 Add axios in your \<head>
