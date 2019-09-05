@@ -7,8 +7,11 @@ You can easily hook up with your backend iterations.
 LIVE: https://jsfiddle.net/bgul/16w92q0m/
 
 # Features
-* Limits stock increment, and applies the logic => (max stock - requested quantity)
-* Changes customer balance and debit
+* It has clean, solid, modular and scalable code(you can add your facades for suitable needs).
+* Simple XSS protection provided by textContent().
+* Axios support.
+* Limits stock increment, and applies the logic => (max stock - requested quantity).
+* Changes customer balance and debit.
 * Prevents buying requests when customer balance is 0 or in case customer balance is not enough for required amount.
 
 
