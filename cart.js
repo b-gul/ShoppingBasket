@@ -18,6 +18,7 @@ function ShoppingBasketService(config) {
   this.basketRecordCount = config.basketRecordCount;
   this.mobileBasketRecordCount = config.mobileBasketRecordCount; 
   this.basketTotalPrice = config.basketTotalPrice; 
+  
   this.currency = config.currency;
 }
 
