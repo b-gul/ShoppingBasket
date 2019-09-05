@@ -23,6 +23,40 @@ Import the file BEFORE CLOSING \<body> tag:
 <script src="./cart.js"></script>
 ```
 
+At the end of file there is an configuration array that you can configure beforehand.
+
+```
+var config = {
+  /**
+   * Controller path for backend
+   */
+  backendUrl: '', 
+ 
+  /**
+   * Specified div id prefix 
+   */
+  productElemIdPrefix: 'product',
+ 
+  /**
+   * Specified div ids for account balance informations
+   */
+  customerDebit: document.getElementById('customer-debit'),
+  customerBalance: document.getElementById('customer-balance'),
+ 
+  /**
+   * Specified div ids for shopping basket information
+   */
+  basketRecordCount:  document.getElementById('basket-count'),
+  mobileBasketRecordCount: document.getElementById('mobile-basket-count'),
+  basketTotalPrice: document.getElementById('basket-total'),
+ 
+  /**
+   * Customizable currency sign 
+   */
+  currency: ''
+};
+```
+
 
 You can implement anywhere you want:
 
