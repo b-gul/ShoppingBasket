@@ -350,6 +350,9 @@ ShoppingBasketController.prototype = {
 var config = {
   /**
    * Controller path for backend
+   * Request method: GET
+   * Warning: This property is going to concatenated with two parameters.
+   * Parameters: ?id=<id>&qty=<qty>
    */
   backendUrl: '', 
  
