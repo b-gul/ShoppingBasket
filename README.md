@@ -11,7 +11,7 @@ Live DEMO(Warning: DEMO code has differences to work properly on JSFiddle): http
 * Simple XSS protection provided by textContent().
 * Axios support.
 * Limits stock increment, and applies the logic => (max stock - requested quantity).
-* Changes customer balance and debit.
+* Updates customer balance and debit every single buying request.
 * Prevents buying requests when customer balance is 0 or in case customer balance is not enough for required amount.
 
 
