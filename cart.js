@@ -57,7 +57,7 @@ ShoppingBasketService.prototype = {
     }
 
     if (stockCount.textContent < this.remainingMaxRequestForProductStockQty[data.id] 
-      && maxStockCount !== 0) {
+        && maxStockCount !== 0) {
       stockCount.textContent = parseInt(stockCount.textContent) + 1;
     } 
 
@@ -86,7 +86,7 @@ ShoppingBasketService.prototype = {
     var stockCount = this.stockCountOfProduct(id);
 
     if (! this.requestedStockQtyForProduct.hasOwnProperty(id)){
-      this.requestedStockQtyForProduct[id] = [];
+        this.requestedStockQtyForProduct[id] = [];
     }
         
     this.requestedStockQtyForProduct[id] = parseInt(stockCount.textContent);
