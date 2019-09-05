@@ -303,13 +303,6 @@ ShoppingBasketController.prototype = {
   },
   
   /**
-   * @returns {Object} ShoppingCartService
-   */ 
-  destroyStockRequest (args) {
-    return this.shoppingBasketService.destroyStockRequestQtyForProduct(args.id);
-  },
-  
-  /**
    * @param {Object} args Holds product id, max stock qty and price value
    */
   productRequestTransaction (args) {
