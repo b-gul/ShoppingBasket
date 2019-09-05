@@ -4,7 +4,7 @@
 A simple shopping basket stock request controller for your frontend.
 You can easily hook up with your backend iterations.
 
-Live DEMO: https://jsfiddle.net/bgul/16w92q0m/
+Live DEMO(Warning: DEMO code has differences to work properly on JSFiddle): https://jsfiddle.net/bgul/16w92q0m/
 
 # Features
 * It is lighweight, solid, modular and scalable(you can add your facades for suitable needs).
