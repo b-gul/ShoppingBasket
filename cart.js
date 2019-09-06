@@ -148,6 +148,7 @@ ShoppingBasketService.prototype = {
   resetCounterForProduct (id) {
     var stockCount = this.stockCountOfProduct(id);  
     stockCount.textContent = 0;
+    
     return this;
   },
   
@@ -226,10 +227,7 @@ ShoppingBasketService.prototype = {
     var requestedStockQty = this.getRequestedStockCountForProduct(data.id);
     var stockCount = this.stockCountOfProduct(data.id);
     
-    if (parseInt(stockCount.textContent) < 0) {
-      this.customerDebit.textContent = parseFloat(this.customerDebit.textContent) + data.price + this.currency;
-      this.customerBalance.textContent = parseFloat(this.customerBalance.textContent) - data.price + this.currency;
-    } else { 
+    if (parseInt(stockCount.textContent) > 0) {
       this.customerDebit.textContent = parseFloat(this.customerDebit.textContent) + (requestedStockQty * data.price) + this.currency;
       this.customerBalance.textContent = parseFloat(this.customerBalance.textContent) - (requestedStockQty * data.price) + this.currency;
     } 
