@@ -184,7 +184,7 @@ ShoppingBasketService.prototype = {
    */
   addProductRequestToBasket (id) {
     var totalRequested = this.getRequestedStockCountForProduct(id);
-    var request axios.get(this.backendUrl + '?id=' + id  + '&qty=' + totalRequested);
+    var request = axios.get(this.backendUrl + '?id=' + id  + '&qty=' + totalRequested);
 
     return request;
   },
